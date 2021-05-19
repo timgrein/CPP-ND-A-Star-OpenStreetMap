@@ -61,11 +61,6 @@ static COORDINATES ReadInCoordinatesFromCin() {
     coordinates.end_x = GuardedCoordinateInput("Please enter a end x value: ");
     coordinates.end_y = GuardedCoordinateInput("Please enter a end y value: ");
 
-    std::cout << coordinates.start_x << "\n";
-    std::cout << coordinates.start_y << "\n";
-    std::cout << coordinates.end_x << "\n";
-    std::cout << coordinates.end_y << "\n";
-
     return coordinates;
 }
 
