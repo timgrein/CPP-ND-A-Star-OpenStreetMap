@@ -7,6 +7,7 @@
 #include "route_model.h"
 #include "render.h"
 #include "route_planner.h"
+#include "constants.h"
 
 struct COORDINATES {
     float start_x;
@@ -33,26 +34,43 @@ static std::optional<std::vector<std::byte>> ReadFile(const std::string &path) {
     return std::move(contents);
 }
 
+static float GuardedCoordinateInput(const std::string &input_message){
+    float input;
+
+    std::cout << input_message;
+    std::cin >> input;
+
+    if(input < LOWER_BOUNDARY){
+        std::cout << "Wrong input " << input << ". Please provide an input value greater than " << LOWER_BOUNDARY << "\n";
+        input = GuardedCoordinateInput(input_message);
+    }
+
+    if(input > UPPER_BOUNDARY){
+        std::cout << "Wrong input " << input << ". Please provide an input value lower than " << UPPER_BOUNDARY << "\n";
+        input = GuardedCoordinateInput(input_message);
+    }
+
+    return input;
+}
+
 static COORDINATES ReadInCoordinatesFromCin() {
-    struct COORDINATES coordinates;
+    struct COORDINATES coordinates{};
 
-    std::cout << "Please enter a start x value: ";
-    std::cin >> coordinates.start_x;
+    coordinates.start_x = GuardedCoordinateInput("Please enter a start x value: ");
+    coordinates.start_y = GuardedCoordinateInput("Please enter a start y value: ");
+    coordinates.end_x = GuardedCoordinateInput("Please enter a end x value: ");
+    coordinates.end_y = GuardedCoordinateInput("Please enter a end y value: ");
 
-    std::cout << "Please enter a start y value: ";
-    std::cin >> coordinates.start_y;
-
-    std::cout << "Please enter a end x value: ";
-    std::cin >> coordinates.end_x;
-
-    std::cout << "Please enter a end y value: ";
-    std::cin >> coordinates.end_y;
+    std::cout << coordinates.start_x << "\n";
+    std::cout << coordinates.start_y << "\n";
+    std::cout << coordinates.end_x << "\n";
+    std::cout << coordinates.end_y << "\n";
 
     return coordinates;
 }
 
 int main(int argc, const char **argv) {
-    std::string osm_data_file = "";
+    std::string osm_data_file;
     if (argc > 1) {
         for (int i = 1; i < argc; ++i)
             if (std::string_view{argv[i]} == "-f" && ++i < argc)
@@ -74,9 +92,6 @@ int main(int argc, const char **argv) {
             osm_data = std::move(*data);
     }
 
-    // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
-    // user input for these values using std::cin. Pass the user input to the
-    // RoutePlanner object below in place of 10, 10, 90, 90.
     struct COORDINATES coordinates = ReadInCoordinatesFromCin();
 
     // Build Model.
