@@ -1,0 +1,4 @@
+ToolSet: Ubuntu 20.04.2 LTS (local)@C:\Users\User\AppData\Local\Microsoft\WindowsApps\ubuntu.exe
+Options: 
+
+Options:-DCMAKE_CXX_COMPILER=/usr/bin/g++
