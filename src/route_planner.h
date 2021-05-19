@@ -29,7 +29,8 @@ class RoutePlanner {
     float distance = 0.0f;
     RouteModel &m_Model;
 
-    static bool SortDescendingByGAndHValueSum(RouteModel::Node* node_one, RouteModel::Node* node_two);
+    static bool SortNodes(RouteModel::Node* node_one, RouteModel::Node* node_two);
+    static float ConvertCoordinateToPercentage(float coordinate);
 };
 
 #endif
