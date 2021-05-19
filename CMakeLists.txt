@@ -25,7 +25,7 @@ add_subdirectory(thirdparty/pugixml)
 add_subdirectory(thirdparty/googletest)
 
 # Add project executable
-add_executable(OSM_A_star_search src/main.cpp src/model.cpp src/render.cpp src/route_model.cpp src/route_planner.cpp)
+add_executable(OSM_A_star_search src/main.cpp src/model.cpp src/render.cpp src/route_model.cpp src/route_planner.cpp src/constants.h)
 
 target_link_libraries(OSM_A_star_search
     PRIVATE io2d::io2d
