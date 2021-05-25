@@ -1,4 +1,4 @@
-# Route Planning Project
+# Route Planning (1st project of the Udacity C++ Nanodegree)
 
 This repository contains the full code for first project of the Udacity Nanodegree in C++. The starter code can be found here: https://github.com/udacity/CppND-Route-Planning-Project.
 The project is about implementing the A* search algorithm for finding the shortest path between two points on a OSM (OpenStreetMap) map.
